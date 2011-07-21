@@ -17,7 +17,30 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'content'); ?>
-		<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
+		<!--<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?> -->
+		
+		<!--replace the textArea with ckEditor -->
+		<?php $this->widget('ext.ckeditor.CKEditorWidget',array(
+                        "model"=>$model,                 # Data-Model
+                        "attribute"=>'content',          # Attribute in the Data-Model
+                        "defaultValue"=>$model->content,     # Optional
+
+                        # Additional Parameter (Check http://docs.cksource.com/ckeditor_api/symbols/CKEDITOR.config.html)
+                        "config" => array(
+                                "height"=>"400px",
+                                "width"=>"100%",
+                                "toolbar"=>"Basic",
+                        ),
+
+                        #Optional address settings if you did not copy ckeditor on application root
+                        "ckEditor"=>Yii::app()->basePath."/../../ckeditor/ckeditor.php",
+                                  # Path to ckeditor.php
+                        "ckBasePath"=>Yii::app()->baseUrl."/../ckeditor/",
+                                  # Realtive Path to the Editor (from Web-Root)
+                ) ); ?>
+                <!--This is not working , whyyyyyyyyyyyyy -->
+                
+                
 		<?php echo $form->error($model,'content'); ?>
 	</div>
 
