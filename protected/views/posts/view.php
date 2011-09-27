@@ -13,9 +13,10 @@ $this->menu=array(
 );
 ?>
 
+
 <h1>View Post: <?php echo $model->title; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<!-- <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
@@ -28,4 +29,25 @@ $this->menu=array(
 		array('value' =>$model->author->username, 'label' => 'Author'),
 		array('value' => $model->language[$model->lang], 'label' => 'Lang'),
 	),
-)); ?>
+)); ?> -->
+
+<div class="view">
+    <?php $data = $model; ?>
+	<b><?php echo CHtml::encode($data->title); ?></b>
+	<br />
+	<p><?php echo $data->content ; ?> </p>
+	<br />
+	<b>Last updated:</b> <?php echo CHtml::encode($data->update_time); ?> <br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('lang')); ?>:</b>
+	<?php if ($data->language[$data->lang] == 'en')
+	    { 
+	        echo "English"; 
+	    }
+	    else 
+	    { 
+	            echo "Arabic";
+	    } ?>
+	<br />
+
+</div>
